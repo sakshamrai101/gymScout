@@ -1,5 +1,4 @@
 "use strict";
-// database connection logic:
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,9 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// database connection logic:
 var mongoose_1 = require("mongoose");
 var dotenv = require("dotenv");
-dotenv.config();
+dotenv.config({ path: "../.env" });
 // fn to add mongodb connection to the app.
 // async: a fn that can take time to perform tasks (db connection, API Calls), w/o blocking the program.
 // promise: an object returned from an async fn (has 3 possible values, pending, fulfilled and rejected).
@@ -49,6 +49,7 @@ var connectDB = function () { return __awaiter(void 0, void 0, void 0, function 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
+                console.log(process.env.MONGO_URI);
                 return [4 /*yield*/, mongoose_1.default.connect(process.env.MONGO_URI || "")];
             case 1:
                 conn = _a.sent();

@@ -8,12 +8,10 @@
     "esModuleInterop": true, /* Allow default imports for CommonJS modules */
     "allowSyntheticDefaultImports": true, /* Allow synthetic default imports */
     "skipLibCheck": true, /* Skip type checking for .d.ts files */
-    "forceConsistentCasingInFileNames": true /* Enforce consistent casing in imports */
+    "forceConsistentCasingInFileNames": true, /* Enforce consistent casing in imports */
+    "typeRoots": [ "node_modules/@types"],
   },
   "include": [
     "./**/*.ts"
   ], /* Include all TypeScript files */
-  "exclude": [
-    "node_modules"
-  ] /* Exclude node_modules folder */
 }
