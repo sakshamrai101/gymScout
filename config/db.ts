@@ -1,5 +1,7 @@
 // db.ts
 
+// Connectioon fn with the db 
+
 import mongoose from 'mongoose';
 
 const connectDB = async (): Promise<void> => {

@@ -13,5 +13,9 @@
   },
   "include": [
     "./**/*.ts"
-  ], /* Include all TypeScript files */
+  ], // Include all .ts files in the project
+  "exclude": [
+    "node_modules",
+    "dist"
+  ] // Exclude these folders/* Include all TypeScript files */
 }

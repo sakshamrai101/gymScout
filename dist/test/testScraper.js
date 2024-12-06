@@ -1,5 +1,4 @@
 "use strict";
-// db.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,22 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Connectioon fn with the db 
-const mongoose_1 = __importDefault(require("mongoose"));
-const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
+const scraper_1 = __importDefault(require("../utils/scraper"));
+// Create a testing function to test the functionality of the scraper:
+const testScraper = () => __awaiter(void 0, void 0, void 0, function* () {
+    const longitude = 40.7128;
+    const latitude = -74.0060;
+    const radius = 10000;
     try {
-        console.log('MONGO_URI:', process.env.MONGO_URI);
-        const conn = yield mongoose_1.default.connect(process.env.MONGO_URI || '');
-        console.log(`MongoDB connected: ${conn.connection.host}`);
+        console.log('Testing OpenStreetMap Scraper ....');
+        const gyms = yield (0, scraper_1.default)(latitude, longitude, radius);
+        console.log("Here are the nearby gyms: ", gyms);
     }
     catch (error) {
         if (error instanceof Error) {
-            console.log(`Error: ${error.message}`);
+            console.log("Error during scraping: ", error.message);
         }
         else {
-            console.log('An unknown error occurred.');
+            console.log("An unkown error occurred.");
         }
-        process.exit(1); // Exit the process with failure.
     }
 });
-exports.default = connectDB;
+testScraper();
