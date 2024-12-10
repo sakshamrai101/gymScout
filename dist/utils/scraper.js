@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,58 +7,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const axios_1 = __importDefault(require("axios"));
-// Function to scrape nearby gym data using OpenStreetMap Overpass API
-const scrapeOpenStreetMap = (latitude_1, longitude_1, ...args_1) => __awaiter(void 0, [latitude_1, longitude_1, ...args_1], void 0, function* (latitude, longitude, radius = 10000) {
-    try {
-        // The Overpass API query
-        const query = `
-        [out:json]; 
-        (
-            node["leisure"](around:${radius},${latitude},${longitude});
-            way["leisure"](around:${radius},${latitude},${longitude});
-            relation["leisure"](around:${radius},${latitude},${longitude});
-        );
-        out body;
-        >;
-        out skel qt;
-        `;
-        console.log("Generated Query:\n", query);
-        // Send this query to the OpenStreetMap API
-        const response = yield axios_1.default.post("https://overpass-api.de/api/interpreter", query, {
-            headers: { "Content-Type": "text/plain" },
-        });
-        // Destructure and process the API response
-        const gyms = response.data.elements // Assuming the API response has a field "elements" containing gym details
-            .filter((element) => { var _a; return (_a = element.tags) === null || _a === void 0 ? void 0 : _a.name; }) // Filter elements with a defined "name" under the tags property
-            .map((element) => ({
-            id: element.id,
-            name: element.tags.name,
-            latitude: element.lat || null,
-            longitude: element.lon || null,
-            address: element.tags["addr:street"]
-                ? `${element.tags["addr:street"]}, ${element.tags["addr:city"] || ""}, ${element.tags["addr:postcode"] || ""}`
-                : "Address not available",
-            opening_hours: element.tags.opening_hours || "Hours not available",
-            website: element.tags.website || "Website not available",
-        }));
-        return gyms;
-    }
-    catch (error) {
-        if (axios_1.default.isAxiosError(error)) {
-            console.error("Axios error scraping OpenStreetMap:", error.message);
-        }
-        else if (error instanceof Error) {
-            console.error("General error scraping OpenStreetMap:", error.message);
-        }
-        else {
-            console.error("An unknown error occurred while scraping OpenStreetMap.");
-        }
-        throw new Error("Failed to fetch gym data from OpenStreetMap.");
-    }
+// mock fn to return hardcoded data to test front-end functionality:
+const fetchGyms = (page, limit) => __awaiter(void 0, void 0, void 0, function* () {
+    // Simulating real api call delay 
+    yield new Promise((resolve) => setTimeout(resolve, 500));
+    // mock data to be returned:
+    return {
+        gyms: [
+            {
+                id: "1",
+                name: "Iron Paradise Gym",
+                address: "123 Fitness Street, Los Angeles, CA",
+                opening_hours: "6:00 AM - 10:00 PM",
+                latitude: 34.052235,
+                longitude: -118.243683,
+            },
+            {
+                id: "2",
+                name: "Muscle Factory",
+                address: "456 Strength Avenue, Los Angeles, CA",
+                opening_hours: "5:00 AM - 11:00 PM",
+                latitude: 34.052731,
+                longitude: -118.244123,
+            },
+            {
+                id: "3",
+                name: "The Gym Hub",
+                address: "789 Cardio Lane, Los Angeles, CA",
+                opening_hours: "24/7",
+                latitude: 34.053235,
+                longitude: -118.243123,
+            },
+            {
+                id: "4",
+                name: "Body Power Fitness",
+                address: "321 Weightlifting Blvd, Los Angeles, CA",
+                opening_hours: "6:00 AM - 10:00 PM",
+                latitude: 34.051123,
+                longitude: -118.245234,
+            },
+        ],
+        totalCount: 4, // Total gyms in the mock dataset
+    };
 });
-exports.default = scrapeOpenStreetMap;
+export default fetchGyms;

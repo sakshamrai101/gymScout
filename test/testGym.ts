@@ -1,7 +1,7 @@
 import mongoose, { mongo } from "mongoose";
 import * as dotenv from "dotenv";
-import Gym from "../models/gymModels";
-import connectDB from "../config/db";
+import Gym from "../models/gymModels.js";
+import connectDB from "../config/db.js";
 
 
 // Load up the environment variables ....

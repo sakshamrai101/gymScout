@@ -1,23 +1,17 @@
-"use strict";
-// server.ts
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const express_1 = __importDefault(require("express"));
-const db_1 = __importDefault(require("./config/db"));
-const path_1 = __importDefault(require("path"));
-const gyms_1 = __importDefault(require("./routes/gyms"));
-const app = (0, express_1.default)();
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import connectDB from "./config/db.js"; // Note the ".js" extension
+import path from "path";
+import router from "./routes/gyms.js"; // Note the ".js" extension
+const app = express();
 // Connect to the database
-(0, db_1.default)();
+connectDB();
 // Middleware
-app.use(express_1.default.json());
+app.use(express.json());
 // Routes
-app.use('/api/gyms', gyms_1.default);
+app.use("/api/gyms", router);
 // Serve static files
-app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
-const PORT = process.env.PORT || 500;
+app.use(express.static(path.join(process.cwd(), "public"))); // Update for ES module pathing
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

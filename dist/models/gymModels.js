@@ -1,12 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const mongoose_2 = require("mongoose");
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
 // Actual schema, based on above structure:
-const GymSchema = new mongoose_2.Schema({
+const GymSchema = new Schema({
     name: { type: String, required: true },
     location: {
         lat: { type: Number, required: true },
@@ -29,4 +24,4 @@ const GymSchema = new mongoose_2.Schema({
         },
     ],
 }, { timestamps: true });
-exports.default = mongoose_1.default.model("Gym", GymSchema);
+export default mongoose.model("Gym", GymSchema);
