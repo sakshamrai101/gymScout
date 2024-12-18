@@ -1,0 +1,16 @@
+.filter-box {
+    padding: 20px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.filter-box label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.filter-box input {
+    width: 100%;
+}

@@ -1,19 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es2016", /* Target JavaScript version for output */
-    "module": "commonjs", /* Use CommonJS for Node.js compatibility */
-    "outDir": "./dist", /* Output folder for compiled JavaScript */
-    "rootDir": "./", /* Root folder for TypeScript source files */
-    "strict": true, /* Enable strict type checking */
-    "esModuleInterop": true, /* Allow default imports for CommonJS modules */
-    "allowSyntheticDefaultImports": true, /* Allow synthetic default imports */
-    "skipLibCheck": true, /* Skip type checking for .d.ts files */
-    "forceConsistentCasingInFileNames": true /* Enforce consistent casing in imports */
+    "target": "es2016",
+    "module": "Node16",
+    "moduleResolution": "Node",
+    "outDir": "./dist",
+    "rootDir": "./src", /* Specify the correct root directory */
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react", /* Ensure TypeScript understands JSX */
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
-    "./**/*.ts"
-  ], /* Include all TypeScript files */
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ], /* Include all TypeScript files in the src folder */
   "exclude": [
-    "node_modules"
-  ] /* Exclude node_modules folder */
+    "node_modules",
+    "dist"
+  ]
 }

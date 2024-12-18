@@ -1,0 +1,6 @@
+.gym-card-grid {
+    display: flex;
+    gap: 50px;
+    margin: 20px;
+    flex-wrap: wrap;
+}
