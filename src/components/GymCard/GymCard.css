@@ -1,0 +1,44 @@
+.gym-card {
+    background-color: #555;
+    /* Slightly lighter than the app background for contrast */
+    color: #fff;
+    /* White text for readability */
+    border-radius: 8px;
+    /* Rounded corners */
+    padding: 20px;
+    /* Inner padding */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* Smooth hover effect */
+    height: 300px;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+.gym-card:hover {
+    transform: translateY(-5px);
+    /* Slight lift on hover */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+    /* Enhanced shadow on hover */
+}
+
+.gym-card h3 {
+    margin: 0 0 10px;
+    /* Space below the title */
+    font-size: 18px;
+    /* Larger font for the gym name */
+    align-content: center;
+}
+
+.gym-card p {
+    margin: 5px 0;
+    /* Space between paragraphs */
+    font-size: 14px;
+    /* Smaller font for details */
+}
+.edit-button {
+    background-color: black;
+    color: white;
+}

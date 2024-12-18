@@ -2,6 +2,10 @@
   "main": "src/index.jsx",
   "type": "module",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.1.10",
+    "@mui/material": "^6.1.10",
     "axios": "^1.7.9",
     "create-react-app": "^5.0.1",
     "dotenv": "^16.4.5",
@@ -10,7 +14,8 @@
     "mongoose": "^7.3.4",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-slider": "^2.0.6"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
