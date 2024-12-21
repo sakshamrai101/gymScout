@@ -1,5 +1,4 @@
 "use strict";
-// db.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,22 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Connectioon fn with the db 
 const mongoose_1 = __importDefault(require("mongoose"));
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('MONGO_URI:', process.env.MONGO_URI);
-        const conn = yield mongoose_1.default.connect(process.env.MONGO_URI || '');
+        console.log("MONGO_URI:", process.env.MONGO_URI);
+        const conn = yield mongoose_1.default.connect(process.env.MONGO_URI || "");
+        // Set up mongoose event listeners immediately
+        mongoose_1.default.connection.on("connected", () => {
+            console.log("MongoDB connection established!");
+        });
         console.log(`MongoDB connected: ${conn.connection.host}`);
     }
     catch (error) {
         if (error instanceof Error) {
-            console.log(`Error: ${error.message}`);
+            console.error(`Error: ${error.message}`);
         }
         else {
-            console.log('An unknown error occurred.');
+            console.error("An unknown error occurred.");
         }
-        process.exit(1); // Exit the process with failure.
+        process.exit(1); // Exit the process with failure
     }
 });
 exports.default = connectDB;
