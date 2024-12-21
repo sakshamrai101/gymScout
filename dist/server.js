@@ -9,6 +9,8 @@ dotenv_1.default.config();
 const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./config/db"));
 const path_1 = __importDefault(require("path"));
+console.log("Resolving gyms.js path:");
+console.log(path_1.default.resolve(__dirname, "./routes/gyms.js"));
 const gyms_1 = __importDefault(require("./routes/gyms"));
 const app = (0, express_1.default)();
 // Connect to the database
@@ -16,7 +18,7 @@ const app = (0, express_1.default)();
 // Middleware
 app.use(express_1.default.json());
 // Routes
-app.use('/api/gyms', gyms_1.default);
+app.use("/api/gyms", gyms_1.default);
 // Serve static files
 app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
 const PORT = process.env.PORT || 500;
