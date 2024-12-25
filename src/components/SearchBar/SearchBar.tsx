@@ -1,17 +1,15 @@
 import React from "react";
-import "./SearchBar.css"
+import "./SearchBar.css";
 
 const SearchBar: React.FC = () => {
     return (
         <div className="search-bar">
             <input
-            type="text"
-            placeholder="Enter your location"
-            className="search-input">
-            </input>
-            <button className="search-button">
-                Search
-            </button>
+                type="text"
+                placeholder="Enter your location"
+                className="search-input"
+            />
+            <button className="search-button">Search</button>
         </div>
     );
 };

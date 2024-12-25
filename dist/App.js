@@ -1,7 +1,7 @@
 import React from "react";
-import HomePage from "./components/HomePage.js";
+import LandingPage from "./components/LandingPage/LandingPage";
 const App = () => {
     return (React.createElement("div", { className: "App" },
-        React.createElement(HomePage, null)));
+        React.createElement(LandingPage, null)));
 };
 export default App;

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
 import GymCardGrid from "../GymCardGrid/GymCardGrid";
-import FilterBox from "../FilterBox/FilterBox";
 import Footer from "../Footer/Footer";
 import "./LandingPage.css";
+import FilterBox from "../FilterBox/FilterBox";
 
 const LandingPage: React.FC = () => {
-    return(
-        <div className="landing-page">
+    const [blurBackground, setBlurBackground] = useState(false);
+
+    return (
+        <div className={`landing-page ${blurBackground ? "blurred" : ""}`}>
             <Header />
             <div className="search-section">
                 <SearchBar />
