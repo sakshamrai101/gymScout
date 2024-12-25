@@ -9,6 +9,20 @@ const data = [
     { name: "Wellness Center", address: "789 Oak St", distance: 5, rating: 3.5, review: "Nice gym, good equipment" },
     { name: "Elite Gym", address: "123 Maple St", distance: 1.2, rating: 4.8, review: "Top-notch gym, great trainers" },
     { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
+    { name: "Fitness Pro", address: "321 Birch St", distance: 4, rating: 4.2, review: "Great value for money" },
 ];
 
 const GymCardGrid: React.FC = () => {
