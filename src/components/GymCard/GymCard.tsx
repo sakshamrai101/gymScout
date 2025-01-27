@@ -21,7 +21,7 @@ const GymCard: React.FC<GymCardProps> = ({ name, address, distance, rating, revi
         console.log(`Comment: ${comment}`);
         setShowReviewPopup(false);
         setShowSuccessPopup(true);
-        setTimeout(() => setShowSuccessPopup(false), 2000); // Close success popup after 2 seconds
+        setTimeout(() => setShowSuccessPopup(false), 2000);
     };
 
     const handleReviewPopupOpen = () => {
@@ -40,19 +40,17 @@ const GymCard: React.FC<GymCardProps> = ({ name, address, distance, rating, revi
                     <p className="gym-card-rating">⭐ {rating}/5</p>
                 </div>
                 <p className="gym-card-address">{address}</p>
-                <p className="gym-card-distance">📍 {distance} miles away</p>
+                <p className="gym-card-distance">📍 {distance.toFixed(2)} miles away</p>
                 <p className="gym-card-review">"{review}"</p>
                 <button className="leave-review-button" onClick={handleReviewPopupOpen}>
                     Leave a Review
                 </button>
             </div>
 
-            {/* Review Popup */}
             {showReviewPopup && (
                 <ReviewPopUp onClose={handleReviewPopupClose} onSubmit={handleReviewSubmit} />
             )}
 
-            {/* Success Popup */}
             {showSuccessPopup && <SuccessPopUp message="Thanks for your review!" />}
         </>
     );

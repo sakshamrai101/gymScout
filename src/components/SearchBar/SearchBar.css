@@ -7,6 +7,8 @@
     margin: 20px 0;
     width: 100%;
     max-width: 600px;
+    position: relative;
+    /* Ensure positioning context for suggestions */
 }
 
 /* Input field styling */
@@ -39,6 +41,36 @@
 
 .search-button:hover {
     background-color: #444;
+}
+
+/* Suggestions list container */
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual suggestion item */
+.suggestions-list li {
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Highlight suggestion on hover */
+.suggestions-list li:hover {
+    background-color: #f0f0f0;
 }
 
 /* Responsive adjustments */
