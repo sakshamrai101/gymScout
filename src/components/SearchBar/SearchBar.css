@@ -1,22 +1,87 @@
+/* Container for the search bar */
 .search-bar {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-    height: 40px;
-    width: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    /* Ensure positioning context for suggestions */
 }
 
+/* Input field styling */
 .search-input {
     flex: 1;
-    padding: 10px;
+    padding: 10px 15px;
     font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
 }
 
+.search-input:focus {
+    border-color: #000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Search button styling */
 .search-button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #000;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+    background-color: #444;
+}
+
+/* Suggestions list container */
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual suggestion item */
+.suggestions-list li {
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Highlight suggestion on hover */
+.suggestions-list li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-input,
+    .search-button {
+        width: 100%;
+    }
 }

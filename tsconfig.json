@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "module": "Node16",
-    "moduleResolution": "Node",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "./src", /* Specify the correct root directory */
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react", /* Ensure TypeScript understands JSX */
+    "jsx": "react",
+    "resolveJsonModule": true,
     "typeRoots": [
       "node_modules/@types"
     ]
   },
   "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx"
-  ], /* Include all TypeScript files in the src folder */
+    "**/*.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist"

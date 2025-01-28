@@ -1,44 +1,93 @@
+/* Main container for the card */
 .gym-card {
-    background-color: #555;
-    /* Slightly lighter than the app background for contrast */
-    color: #fff;
-    /* White text for readability */
-    border-radius: 8px;
-    /* Rounded corners */
+    background-color: #2c2c34;
+    color: #f5f5f5;
+    border-radius: 12px;
     padding: 20px;
-    /* Inner padding */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
-    transition: transform 0.2s, box-shadow 0.2s;
-    /* Smooth hover effect */
-    height: 300px;
-    width: 300px;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 320px;
+    width: 280px;
 }
 
+/* Hover effects for interactivity */
 .gym-card:hover {
-    transform: translateY(-5px);
-    /* Slight lift on hover */
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-    /* Enhanced shadow on hover */
+    transform: translateY(-10px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+/* Header section containing the gym name and rating */
+.gym-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Styling for the gym name */
 .gym-card h3 {
-    margin: 0 0 10px;
-    /* Space below the title */
-    font-size: 18px;
-    /* Larger font for the gym name */
-    align-content: center;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
-.gym-card p {
-    margin: 5px 0;
-    /* Space between paragraphs */
-    font-size: 14px;
-    /* Smaller font for details */
+/* Rating section styled as a badge */
+.gym-card-rating {
+    background-color: #f39c12;
+    color: black;
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
-.edit-button {
-    background-color: black;
+
+/* Address text */
+.gym-card-address {
+    font-size: 1rem;
+    color: #ddd;
+    margin: 5px 0;
+}
+
+/* Distance text */
+.gym-card-distance {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin: 5px 0;
+}
+
+/* Review text */
+.gym-card-review {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin: 10px 0;
+    color: #aaa;
+}
+
+.leave-review-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.leave-review-button:hover {
+    background-color: #0056b3;
+}
+
+.gym-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gym-card-rating {
+    font-weight: bold;
     color: white;
 }

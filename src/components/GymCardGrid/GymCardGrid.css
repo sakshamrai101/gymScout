@@ -1,6 +1,39 @@
+/* Grid Layout for Gym Cards */
 .gym-card-grid {
-    display: flex;
-    gap: 50px;
-    margin: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid: auto auto / auto auto auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    /* Spacing between cards */
+    padding: 30;
+    /* Internal padding for the grid container */
+    margin: 20px auto;
+    /* Center the grid horizontally */
+    max-width: calc(100% - 40px);
+    /* Ensures equal space on both sides */
+    width: 80%;
+    /* Full width for responsiveness */
+    background: #1e1e24;
+    /* Dark background for contrast */
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .gym-card-grid {
+        padding: 10px;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* Smaller columns for small screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gym-card-grid {
+        grid-template-columns: 1fr;
+        /* Single column for very small screens */
+        align-items: center;
+        justify-content: center;
+    }
 }

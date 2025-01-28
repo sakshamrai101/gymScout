@@ -1,23 +1,23 @@
 import React from "react";
-import "./GymCardGrid.css"
 import GymCard from "../GymCard/GymCard";
+import "./GymCardGrid.css";
 
+interface GymCardGridProps {
+    gyms: any[];
+}
 
-// Mock data to be displayed:
-
-const data = [
-    {name: "Pro Ultimate Gym", address: "Mahavir Enclave", distance: 2, rating: 4, review: "nice gym, good atmosphere"},
-    { name: "Power Gym", address: "456 Elm St", distance: 3.5, rating: 5, review: "nice gym, good girls"},
-    { name: "Wellness Center", address: "789 Oak St", distance: 5, rating: 3.5, review: "nice gym, good equipment" },
-    { name: "Wellness Center", address: "789 Oak St", distance: 5, rating: 3.5, review: "nice gym, good equipment" },
-    { name: "Wellness Center", address: "789 Oak St", distance: 5, rating: 3.5, review: "nice gym, good equipment" }
-
-]
-const GymCardGrid: React.FC = () => {
+const GymCardGrid: React.FC<GymCardGridProps> = ({ gyms }) => {
     return (
         <div className="gym-card-grid">
-            {data.map((gym, index) => (
-                <GymCard key={index} {...gym} />
+            {gyms.map((gym, index) => (
+                <GymCard
+                    key={index}
+                    name={gym.name}
+                    address={gym.address}
+                    distance={gym.distance || 0} // Ensure distance is passed as a number
+                    rating={gym.rating || 0}
+                    review={gym.totalRatings ? `${gym.totalRatings} ratings` : "No reviews"}
+                />
             ))}
         </div>
     );
