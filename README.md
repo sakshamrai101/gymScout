@@ -31,28 +31,13 @@ User-Friendly: Simple interface, dynamic filters, and clear navigation.
 Community-Driven: Ratings and reviews make gym hunting a breeze.
 Accuracy at Its Core: Using the Haversine formula for real-world distance calculations.
 Fully Deployable: Ready for deployment on platforms like Heroku, Vercel, or Render.
+
 🖼️ Screenshots
+
 🌍 Landing Page
-
-
 
 ⭐ Add a Review
 
-🙌 Contributions Welcome!
-Always looking to make GymScout even better. If you have ideas, find bugs, or want to collaborate:
-
-Fork the repo.
-Create a feature branch:
-bash
-Copy
-Edit
-git checkout -b feature/your-feature
-Commit your changes:
-bash
-Copy
-Edit
-git commit -m "Add your feature"
-Push and open a PR! 🚀
 
 💪 Let’s Get Fit Together!
 Whether you're a casual gym-goer or a hardcore fitness enthusiast, GymScout is here to help you find your next workout haven. 💥
