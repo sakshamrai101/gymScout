@@ -40,7 +40,7 @@ Fully Deployable: Ready for deployment on platforms like Heroku, Vercel, or Rend
 ⭐ Add a Review
 
 🙌 Contributions Welcome!
-We’re always looking to make GymScout even better. If you have ideas, find bugs, or want to collaborate:
+Always looking to make GymScout even better. If you have ideas, find bugs, or want to collaborate:
 
 Fork the repo.
 Create a feature branch:
@@ -54,10 +54,8 @@ Copy
 Edit
 git commit -m "Add your feature"
 Push and open a PR! 🚀
-📄 License
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 💪 Let’s Get Fit Together!
 Whether you're a casual gym-goer or a hardcore fitness enthusiast, GymScout is here to help you find your next workout haven. 💥
 
-Made with ❤️ and 💪 by Your Name. 😊
+Made with ❤️ and 💪 by Saksham Rai 😊
