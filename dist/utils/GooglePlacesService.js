@@ -28,7 +28,7 @@ export const fetchGymsFromGoogle = (lat, lng) => __awaiter(void 0, void 0, void 
             locationRestriction: {
                 circle: {
                     center: { latitude: lat, longitude: lng },
-                    radius: 80567 // 50 mile in meters
+                    radius: 1687 // 1 mile in meters
                 }
             }
         };

@@ -6,7 +6,7 @@ interface GymCardGridProps {
     gyms: any[];
 }
 
-const GymCardGrid: React.FC<GymCardGridProps> = ({gyms}) => {
+const GymCardGrid: React.FC<GymCardGridProps> = ({ gyms }) => {
     return (
         <div className="gym-card-grid">
             {gyms.map((gym, index) => (
@@ -14,7 +14,7 @@ const GymCardGrid: React.FC<GymCardGridProps> = ({gyms}) => {
                     key={index}
                     name={gym.name}
                     address={gym.address}
-                    distance={gym.distance || 0}
+                    distance={gym.distance || 0} // Ensure distance is passed as a number
                     rating={gym.rating || 0}
                     review={gym.totalRatings ? `${gym.totalRatings} ratings` : "No reviews"}
                 />

@@ -1,14 +1,15 @@
 import express from "express";
 import axios from "axios";
 import dotenv from "dotenv";
-import Gym from "../models/Gym.js"; // Assuming a Gym model exists
+import Gym from "../models/Gym.js";
 import connectDB from "../config/db.js";
 import { fetchGymsFromGoogle } from "../utils/GooglePlacesService.js";
+import { getDistance } from "geolib";
 
 dotenv.config();
 const router = express.Router();
 
-// Route for Google Places API Autocomplete feature 
+// Route for Google Places API Autocomplete feature
 router.get("/autocomplete", async (req, res) => {
     const { input } = req.query;
 
@@ -21,7 +22,7 @@ router.get("/autocomplete", async (req, res) => {
             params: {
                 input,
                 key: process.env.GOOGLE_MAPS_KEY,
-                types: "geocode", // Restrict results to location-based queries
+                types: "geocode",
             },
         });
 
@@ -34,10 +35,10 @@ router.get("/autocomplete", async (req, res) => {
 
 // Route to fetch nearby gyms from database or Google API
 router.get("/nearby", async (req, res) => {
-    const { lat, lng } = req.query;
+    const { lat, lng, radius, limit, offset, rating } = req.query;
 
-    if (!lat || !lng) {
-        return res.status(400).json({ message: "Latitude and longitude are required." });
+    if (!lat || !lng || !radius) {
+        return res.status(400).json({ message: "Latitude, longitude, and radius are required." });
     }
 
     try {
@@ -45,9 +46,14 @@ router.get("/nearby", async (req, res) => {
 
         const latitude = parseFloat(lat as string);
         const longitude = parseFloat(lng as string);
-        const searchRadius = 1680; // 50 mile in meters
+        const searchRadius = parseFloat(radius as string);
+        const gymLimit = parseInt(limit as string) || 10;
+        const gymOffSet = parseInt(offset as string) || 0;
+        const minRating = parseFloat(rating as string) || 1;
 
-        console.log(`Searching gyms near (${latitude}, ${longitude}) within 5 mile...`);
+        console.log(
+            `Searching gyms near (${latitude}, ${longitude}) within ${searchRadius} meters. Limit: ${gymLimit}, Offset: ${gymOffSet}, Min Rating: ${minRating}`
+        );
 
         let gyms = await Gym.find({
             location: {
@@ -59,12 +65,31 @@ router.get("/nearby", async (req, res) => {
                     $maxDistance: searchRadius,
                 },
             },
-        }).limit(12).lean();
+            rating: { $gte: minRating },
+        })
+            .sort({ rating: -1 })
+            .limit(gymLimit)
+            .skip(gymOffSet)
+            .lean();
+
+        gyms = gyms.map((gym) => {
+            const distanceInMeters = getDistance(
+                { latitude, longitude },
+                {
+                    latitude: gym.location.coordinates[1],
+                    longitude: gym.location.coordinates[0],
+                }
+            );
+            return {
+                ...gym,
+                distance: Number((distanceInMeters / 1609.34).toFixed(2)), // Ensure distance is a number
+            };
+        });
 
         if (gyms.length === 0) {
             console.log("No gyms found in DB, fetching from Google Places API...");
             await fetchGymsFromGoogle(latitude, longitude);
-            gyms = await Gym.find({
+            gyms = (await Gym.find({
                 location: {
                     $near: {
                         $geometry: {
@@ -74,11 +99,27 @@ router.get("/nearby", async (req, res) => {
                         $maxDistance: searchRadius,
                     },
                 },
-            }).limit(12).lean();
+                rating: { $gte: minRating },
+            })
+                .sort({ rating: -1 })
+                .limit(gymLimit)
+                .skip(gymOffSet)
+                .lean()).map((gym) => {
+                    const distanceInMeters = getDistance(
+                        { latitude, longitude },
+                        {
+                            latitude: gym.location.coordinates[1],
+                            longitude: gym.location.coordinates[0],
+                        }
+                    );
+                    return {
+                        ...gym,
+                        distance: Number((distanceInMeters / 1609.34).toFixed(2)),
+                    };
+                });
         }
 
-        console.log(`Found ${gyms.length} gyms in the 50 milea radius.`);
-
+        console.log(`Found ${gyms.length} gyms in the radius.`);
         res.status(200).json({ gyms });
     } catch (error) {
         console.error("Error fetching nearby gyms:", error);

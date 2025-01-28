@@ -49,6 +49,42 @@
     pointer-events: none;
     /* Prevent interaction with the blurred background */
 }
+/* Pagination Controls */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.pagination button {
+    background-color: #444;
+    color: #F5F5F5;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #666;
+}
+
+.pagination button.active-page {
+    background-color: #FF6B6B;
+    color: #FFF;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.pagination button:disabled {
+    background-color: #555;
+    color: #999;
+    cursor: not-allowed;
+}
 
 /* Responsive Adjustments */
 @media screen and (max-width: 768px) {

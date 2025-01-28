@@ -37,7 +37,7 @@
 /* Rating section styled as a badge */
 .gym-card-rating {
     background-color: #f39c12;
-    color: #fff;
+    color: black;
     border-radius: 8px;
     padding: 2px 8px;
     font-size: 0.9rem;
@@ -89,5 +89,5 @@
 
 .gym-card-rating {
     font-weight: bold;
-    color: #ffa500;
+    color: white;
 }
