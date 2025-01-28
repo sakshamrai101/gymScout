@@ -18,7 +18,6 @@ GymScout is your **ultimate location-based gym discovery app**! Whether you’re
 
 **Frontend**:
 - React.js
-- Tailwind CSS (because your app deserves to look fabulous 💅)
 
 **Backend**:
 - Node.js with Express.js
