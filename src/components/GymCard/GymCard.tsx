@@ -1,34 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GymCard.css";
 import ReviewPopUp from "../ReviewPopUp/ReviewPopUp";
-import SuccessPopUp from "../SuccessPopUp/SuccessPopUp";
+import axios from "axios";
 
 interface GymCardProps {
+    gymId: string;
     name: string;
     address: string;
     distance: number;
     rating: number;
-    review: string;
+    totalRatings: number;
 }
 
-const GymCard: React.FC<GymCardProps> = ({ name, address, distance, rating, review }) => {
+const GymCard: React.FC<GymCardProps> = ({
+    gymId,
+    name,
+    address,
+    distance,
+    rating,
+    totalRatings: initialTotalRatings,
+}) => {
+    const [updatedRating, setUpdatedRating] = useState<number>(rating);
+    const [totalRatings, setTotalRatings] = useState<number>(initialTotalRatings);
+    const [latestReview, setLatestReview] = useState<string>("");
+    const [reviews, setReviews] = useState<{ rating: number; comment: string }[]>([]);
     const [showReviewPopup, setShowReviewPopup] = useState(false);
-    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-    const handleReviewSubmit = (newRating: number, comment: string) => {
-        console.log(`Gym: ${name}`);
-        console.log(`Rating: ${newRating}`);
-        console.log(`Comment: ${comment}`);
-        setShowReviewPopup(false);
-        setShowSuccessPopup(true);
-        setTimeout(() => setShowSuccessPopup(false), 2000);
+    // Fetch latest gym data and reviews
+    const fetchUpdatedGymData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5001/api/gyms/${gymId}`);
+            if (response.status === 200) {
+                setUpdatedRating(response.data.gym.rating);
+                setTotalRatings(response.data.gym.totalRatings);
+                setReviews(response.data.gym.reviews || []);
+                setLatestReview(
+                    response.data.gym.reviews.length > 0
+                        ? response.data.gym.reviews[response.data.gym.reviews.length - 1].comment
+                        : "No reviews yet"
+                );
+            }
+        } catch (error) {
+            console.error("Error fetching updated gym data:", error);
+        }
     };
 
-    const handleReviewPopupOpen = () => {
-        setShowReviewPopup(true);
-    };
+    // Fetch reviews on mount
+    useEffect(() => {
+        fetchUpdatedGymData();
+    }, []);
 
-    const handleReviewPopupClose = () => {
+    // Handles review submission
+    const handleReviewSubmit = async (newRating: number, newReview: string) => {
+        try {
+            const response = await axios.post(`http://localhost:5001/api/gyms/${gymId}/review`, {
+                rating: newRating,
+                comment: newReview,
+            });
+
+            if (response.status === 200) {
+                console.log("Review submitted successfully!");
+                fetchUpdatedGymData(); // Refresh data after submission
+            } else {
+                alert("Failed to submit review. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error submitting review:", error);
+            alert("Failed to submit review. Please try again.");
+        }
+
         setShowReviewPopup(false);
     };
 
@@ -36,24 +76,43 @@ const GymCard: React.FC<GymCardProps> = ({ name, address, distance, rating, revi
         <>
             <div className="gym-card">
                 <div className="gym-card-header">
-                    <h3>{name}</h3>
-                    <p className="gym-card-rating">⭐ {rating}/5</p>
+                    <h3 className="gym-name">🏋️ {name}</h3>
+                    <p className="gym-card-rating">⭐ {updatedRating.toFixed(1)}/5</p>
                 </div>
-                <p className="gym-card-address">{address}</p>
-                <p className="gym-card-distance">
-                    📍 {distance ? `${distance.toFixed(2)} miles away` : "Distance not available"}
+                <p className="gym-address">📍 {address}</p>
+                <p className="gym-card-distance">📏 {distance.toFixed(2)} miles away</p>
+                <p className="gym-card-total-ratings">
+                    Ratings: <span>{totalRatings}</span>
                 </p>
-                <p className="gym-card-review">"{review}"</p>
-                <button className="leave-review-button" onClick={handleReviewPopupOpen}>
+
+                {/* Reviews Section */}
+                <div className="gym-reviews">
+                    <h4>Reviews:</h4>
+                    {reviews.length > 0 ? (
+                        <ul>
+                            {reviews.slice(0, 50).map((review, index) => (
+                                <li key={index} className="gym-review-item">
+                                    ⭐ {review.rating}/5 - "{review.comment}"
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="no-reviews">No reviews yet, be the first one to leave one!</p>
+                    )}
+                </div>
+
+                <button className="leave-review-button" onClick={() => setShowReviewPopup(true)}>
                     Leave a Review
                 </button>
             </div>
 
             {showReviewPopup && (
-                <ReviewPopUp onClose={handleReviewPopupClose} onSubmit={handleReviewSubmit} />
+                <ReviewPopUp
+                    gymId={gymId}
+                    onClose={() => setShowReviewPopup(false)}
+                    onSubmit={handleReviewSubmit}
+                />
             )}
-
-            {showSuccessPopup && <SuccessPopUp message="Thanks for your review!" />}
         </>
     );
 };

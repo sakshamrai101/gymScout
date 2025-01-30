@@ -23,6 +23,7 @@ const LandingPage: React.FC = () => {
             console.log(
                 `Fetching gyms near lat: ${lat}, lng: ${lng}, radius: ${newRadius}, minRating: ${minRating}`
             );
+
             const response = await axios.get("http://localhost:5001/api/gyms/nearby", {
                 params: {
                     lat,
@@ -32,9 +33,17 @@ const LandingPage: React.FC = () => {
                     limit: 50,
                 },
             });
+
             if (response.data && response.data.gyms) {
-                setGyms(response.data.gyms); // Replace gyms array with the fetched data
-                setCurrentPage(1); // Reset to the first page
+                // ✅ Ensure `_id` is a string and `distance` is set as a number
+                const gymsWithFixes: IGym[] = response.data.gyms.map((gym: IGym & { _id: any }) => ({
+                    ...gym,
+                    _id: gym._id.toString(), // ✅ Convert `_id` to string to avoid type errors
+                    distance: gym.distance ?? 0, // ✅ Ensure `distance` is always a number
+                }));
+
+                setGyms(gymsWithFixes);
+                setCurrentPage(1);
             } else {
                 alert("No gyms found in the given area.");
             }

@@ -33,7 +33,7 @@ const FilterBox: React.FC<FilterProps> = ({ onSetFilters }) => {
             <label className="price-filter">
                 Price ($): <FaLock className="lock-icon" />
                 <input type="range" min="0" max="100" disabled />
-                <span className="pro-feature">Unlock with Pro</span>
+                <span className="pro-feature">Coming Soon!</span>
             </label>
 
             <button className="set-filters-btn" onClick={handleSetFilters}>

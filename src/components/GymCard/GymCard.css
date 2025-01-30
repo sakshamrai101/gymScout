@@ -9,17 +9,17 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 320px;
-    width: 280px;
+    height: auto;
+    width: 300px;
 }
 
-/* Hover effects for interactivity */
+/* Hover effects */
 .gym-card:hover {
     transform: translateY(-10px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Header section containing the gym name and rating */
+/* Header section with gym name and rating */
 .gym-card-header {
     display: flex;
     justify-content: space-between;
@@ -27,14 +27,14 @@
     margin-bottom: 10px;
 }
 
-/* Styling for the gym name */
-.gym-card h3 {
-    margin: 0;
-    font-size: 1.4rem;
+/* Gym Name */
+.gym-name {
+    font-size: 1.2rem;
     font-weight: bold;
+    color: #ffcc00;
 }
 
-/* Rating section styled as a badge */
+/* Ratings */
 .gym-card-rating {
     background-color: #f39c12;
     color: black;
@@ -44,28 +44,74 @@
     font-weight: bold;
 }
 
-/* Address text */
-.gym-card-address {
+/* Address */
+.gym-address {
     font-size: 1rem;
     color: #ddd;
     margin: 5px 0;
 }
 
-/* Distance text */
+/* Distance */
 .gym-card-distance {
     font-size: 0.9rem;
     color: #bbb;
     margin: 5px 0;
 }
 
-/* Review text */
-.gym-card-review {
-    font-style: italic;
+/* Ratings count */
+.gym-card-total-ratings {
+    font-size: 1rem;
+    color: #00d4ff;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* Reviews Section - Now Scrollable */
+.gym-reviews {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    max-height: 120px;
+    /* ✅ Fixed height to prevent expansion */
+    overflow-y: auto;
+    /* ✅ Enables scrolling */
+}
+
+/* Scrollbar Styling for better UI */
+.gym-reviews::-webkit-scrollbar {
+    width: 6px;
+}
+
+.gym-reviews::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Reviews Heading */
+.gym-reviews h4 {
+    font-size: 1rem;
+    color: #ffcc00;
+    margin-bottom: 8px;
+}
+
+/* Individual Review */
+.gym-review-item {
     font-size: 0.9rem;
-    margin: 10px 0;
+    color: #f5f5f5;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+}
+
+/* If no reviews exist */
+.no-reviews {
+    font-size: 0.9rem;
+    font-style: italic;
     color: #aaa;
 }
 
+/* Review Button */
 .leave-review-button {
     background-color: #007bff;
     color: #fff;
@@ -75,19 +121,9 @@
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    margin-top: 10px;
 }
 
 .leave-review-button:hover {
     background-color: #0056b3;
-}
-
-.gym-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.gym-card-rating {
-    font-weight: bold;
-    color: white;
 }
