@@ -3,6 +3,9 @@ import "./GymCard.css";
 import ReviewPopUp from "../ReviewPopUp/ReviewPopUp";
 import axios from "axios";
 
+// Use the environment variable for API calls
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://gymscout.onrender.com";
+
 interface GymCardProps {
     gymId: string;
     name: string;
@@ -29,7 +32,7 @@ const GymCard: React.FC<GymCardProps> = ({
     // Fetch latest gym data and reviews
     const fetchUpdatedGymData = async () => {
         try {
-            const response = await axios.get(`http://localhost:5001/api/gyms/${gymId}`);
+            const response = await axios.get(`${API_BASE_URL}/api/gyms/${gymId}`);
             if (response.status === 200) {
                 setUpdatedRating(response.data.gym.rating);
                 setTotalRatings(response.data.gym.totalRatings);
@@ -53,7 +56,7 @@ const GymCard: React.FC<GymCardProps> = ({
     // Handles review submission
     const handleReviewSubmit = async (newRating: number, newReview: string) => {
         try {
-            const response = await axios.post(`http://localhost:5001/api/gyms/${gymId}/review`, {
+            const response = await axios.post(`${API_BASE_URL}/api/gyms/${gymId}/review`, {
                 rating: newRating,
                 comment: newReview,
             });
@@ -89,7 +92,7 @@ const GymCard: React.FC<GymCardProps> = ({
                 <div className="gym-reviews">
                     <h4>Reviews:</h4>
                     {reviews.length > 0 ? (
-                        <ul>
+                        <ul className="review-list">
                             {reviews.slice(0, 50).map((review, index) => (
                                 <li key={index} className="gym-review-item">
                                     ⭐ {review.rating}/5 - "{review.comment}"

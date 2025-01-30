@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./SearchBar.css";
 
+// Use environment variable for API URL
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://gymscout.onrender.com";
+
 interface SearchBarProps {
     onSearch: (lat: number, lng: number, radius: number) => void;
 }
@@ -27,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             try {
                 // Call backend API instead of Google API directly
                 const { data } = await axios.get(
-                    `http://localhost:5001/api/gyms/autocomplete`,  // Proxying request to backend
+                    `${API_BASE_URL}/api/gyms/autocomplete`,  // ✅ Updated API URL
                     {
                         params: { input: value },
                     }
