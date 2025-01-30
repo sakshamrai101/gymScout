@@ -5,8 +5,11 @@ import GymCardGrid from "../GymCardGrid/GymCardGrid";
 import Footer from "../Footer/Footer";
 import FilterBox from "../FilterBox/FilterBox";
 import axios from "axios";
-import { IGym } from "../../../backend/models/Gym";
+import { IGym } from "../../../../backend/models/Gym";
 import "./LandingPage.css";
+
+// Use environment variable for API URL
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://gymscout.onrender.com";
 
 const LandingPage: React.FC = () => {
     const [gyms, setGyms] = useState<IGym[]>([]); // Stores all gyms fetched from the backend
@@ -24,7 +27,7 @@ const LandingPage: React.FC = () => {
                 `Fetching gyms near lat: ${lat}, lng: ${lng}, radius: ${newRadius}, minRating: ${minRating}`
             );
 
-            const response = await axios.get("http://localhost:5001/api/gyms/nearby", {
+            const response = await axios.get(`${API_BASE_URL}/api/gyms/nearby`, {
                 params: {
                     lat,
                     lng,
