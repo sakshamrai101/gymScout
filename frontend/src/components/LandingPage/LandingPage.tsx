@@ -5,7 +5,7 @@ import GymCardGrid from "../GymCardGrid/GymCardGrid";
 import Footer from "../Footer/Footer";
 import FilterBox from "../FilterBox/FilterBox";
 import axios from "axios";
-import { IGym } from "../../../models/Gym";
+import { IGym } from "../../../backend/models/Gym";
 import "./LandingPage.css";
 
 const LandingPage: React.FC = () => {
