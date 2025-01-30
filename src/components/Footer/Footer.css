@@ -1,12 +1,68 @@
 .footer {
-    background-color: #222;
     color: #fff;
     text-align: center;
     padding: 20px;
     margin-top: 40px;
 }
 
-.footer a {
-    color: #0a84ff;
-    text-decoration: none;
+.gym-owner-heading {
+    color: #ffcc00;
+}
+
+/* Gym Owner Section */
+.gym-owner-section {
+    margin-top: 20px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 75%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Input Fields */
+.gym-owner-form input,
+.gym-owner-form textarea {
+    width: 92.5%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+}
+
+.gym-owner-form input::placeholder,
+.gym-owner-form textarea::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+/* Submit Button */
+.gym-owner-form button {
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.gym-owner-form button:hover {
+    background: linear-gradient(90deg, #00d4ff, #007bff);
+    transform: scale(1.05);
+}
+
+/* Success Message */
+.success-message {
+    font-weight: bold;
+    color: #00d4ff;
+    font-size: 16px;
+    margin-top: 10px;
 }

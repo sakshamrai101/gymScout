@@ -1,5 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+import emailRoutes from "./routes/email.js"; // Import email routes
+
 
 import express from "express";
 import cors from "cors";
@@ -24,6 +26,8 @@ app.use(express.json());
 // API Routes
 app.use("/api/gyms", gymRoutes);
 
+
+app.use("/api/send-email", emailRoutes); // Register email route
 // Serve static files from the React app
 app.use(express.static(path.resolve(__dirname, "../build")));
 
