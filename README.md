@@ -27,10 +27,10 @@ GymScout is your **ultimate location-based gym discovery app**! Whether you’re
 
 🏆 Highlights
 What Makes GymScout Awesome?
-User-Friendly: Simple interface, dynamic filters, and clear navigation.
-Community-Driven: Ratings and reviews make gym hunting a breeze.
-Accuracy at Its Core: Using the Haversine formula for real-world distance calculations.
-Fully Deployable: Ready for deployment on platforms like Heroku, Vercel, or Render.
+
+- User-Friendly: Simple interface, dynamic filters, and clear navigation.
+- Community-Driven: Ratings and reviews make gym hunting a breeze.
+- Accuracy at Its Core: Using the Haversine formula for real-world distance calculations.
 
 🖼️ Screenshots
 
